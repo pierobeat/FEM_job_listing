@@ -1,4 +1,3 @@
-import React from 'react'
 import imageDesktop from "../assets/images/bg-header-desktop.svg"
 import imageMobile from "../assets/images/bg-header-mobile.svg"
 
