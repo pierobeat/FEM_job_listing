@@ -4,7 +4,7 @@ import imageMobile from "../assets/images/bg-header-mobile.svg"
 
 function Header() {
   return (
-    <div className="w-full h-[150px] bg-[#5DA5A4] overflow-hidden">
+    <div className="w-full h-[150px] bg-[#5DA5A4] overflow-hidden sticky top-0 z-50">
       <picture>
         <source media="(max-width: 425px)" srcSet={imageMobile} />
         <img

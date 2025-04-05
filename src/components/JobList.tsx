@@ -1,12 +1,14 @@
 import { useState } from "react";
 import data from "../dummy-data/data.json";
 import { JobListing } from "../utils/type";
+import { useFilterTagStore } from '../store/FilterTag';
 
 function JobList() {
+  const { addTag, tags, removeTag } = useFilterTagStore();
   const [jobList, setJobList] = useState<JobListing[]>(data);
 
   return (
-    <div className="w-full h-full px-[70px] pt-[30px] relative space-y-6">
+    <div className="w-full h-full px-[70px] pt-[70px] relative space-y-6">
       {jobList?.map((job) => {
         const tagList: string[] = [job.role, job.level, ...job.tools, ...job.languages];
 
@@ -60,7 +62,12 @@ function JobList() {
               {tagList.map((tag, index) => (
                 <span
                   key={index}
-                  className="bg-[#F0F7F5] text-[#5DA5A4] font-bold text-sm px-3 py-2 rounded-md cursor-pointer hover:bg-[#5DA5A4] hover:text-white transition leading-none"
+                  onClick={() => 
+                    tags.includes(tag) ? removeTag(tag) : addTag(tag)
+                  }
+                  className={`font-bold text-sm px-3 py-2 rounded-md cursor-pointer transition leading-none 
+                    ${ tags.includes(tag) ? "bg-[#5DA5A4] text-white" : "bg-[#F0F7F5] text-[#5DA5A4] hover:bg-[#5DA5A4] hover:text-white"}
+                    `}
                 >
                   {tag}
                 </span>
